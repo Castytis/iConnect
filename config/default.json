@@ -1,0 +1,3 @@
+{
+  "mongoURI": "mongodb+srv://kastytis:kastytis@cluster0.mykeg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+}
