@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const ProfileSchema = (mongoose = new mongoose.Schema({
+const ProfileSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user',
@@ -108,7 +108,7 @@ const ProfileSchema = (mongoose = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-}));
+});
 
 const Profile = mongoose.model('profile', ProfileSchema);
 
