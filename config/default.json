@@ -1,5 +1,5 @@
 {
   "mongoURI": "mongodb+srv://kastytis:kastytis@cluster0.mykeg.mongodb.net/iConnect?retryWrites=true&w=majority",
   "jwtSecret": "mysecrettoken",
-  "test": "test"
+  "test": "t"
 }
