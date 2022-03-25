@@ -1,11 +1,15 @@
 import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setAlert } from '../../actions/alert';
 
-const Register = () => {
+const Register = (props) => {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [password2, setPassword2] = useState();
+
+  const dispatch = useDispatch();
 
   const nameChangeHandler = (event) => {
     setName(event.target.value);
@@ -27,7 +31,7 @@ const Register = () => {
     event.preventDefault();
 
     if (password !== password2) {
-      console.log('Password do not match');
+      dispatch(setAlert('Passwords do not match', 'danger'));
     } else {
       const newUser = {
         name: name,
@@ -92,7 +96,7 @@ const Register = () => {
           <input type='submit' className='btn btn-primary' value='Register' />
         </form>
         <p className='my-1'>
-          Already have an account? <Link href='/login'>Sign In</Link>
+          Already have an account? <Link to='/login'>Sign In</Link>
         </p>
       </div>
     </Fragment>
