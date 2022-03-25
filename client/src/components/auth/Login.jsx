@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../actions/auth';
 
 const Login = () => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => !state.auth.isAuthenticated);

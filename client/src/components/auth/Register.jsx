@@ -5,10 +5,10 @@ import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
 
 const Register = (props) => {
-  const [name, setName] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const [password2, setPassword2] = useState();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [password2, setPassword2] = useState('');
 
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => !state.auth.isAuthenticated);
