@@ -16,6 +16,9 @@ const Navbar = () => {
   const authLinks = (
     <ul>
       <li>
+        <Link to='/dashboard'>Dashboard</Link>
+      </li>
+      <li>
         <Link to='/' onClick={onClickHandler}>
           <i className='fas fa-sign-out-alt' />
           <span className='hide-sm'>Logout</span>
