@@ -6,6 +6,8 @@ import {
   REGISTER_FAIL,
   AUTH_ERROR,
   USER_LOADED,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
 } from './types';
 
 // Load User
@@ -37,6 +39,8 @@ export const register = (formData) => async (dispatch) => {
       type: REGISTER_SUCCESS,
       payload: res.data,
     });
+
+    dispatch(loadUser());
   } catch (err) {
     const errors = err.response.data.errors;
     console.log('err.response.data', err.response.data);
@@ -45,6 +49,29 @@ export const register = (formData) => async (dispatch) => {
     }
     dispatch({
       type: REGISTER_FAIL,
+    });
+  }
+};
+
+//Login User
+export const login = (formData) => async (dispatch) => {
+  try {
+    const res = await axios.post('/api/auth', formData);
+
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload: res.data,
+    });
+
+    dispatch(loadUser());
+  } catch (err) {
+    const errors = err.response.data.errors;
+    console.log('err.response.data', err.response.data);
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+    }
+    dispatch({
+      type: LOGIN_FAIL,
     });
   }
 };

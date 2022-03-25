@@ -1,9 +1,14 @@
 import React, { useState, Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../../actions/auth';
 
 const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector((state) => !state.auth.isAuthenticated);
 
   const emailChangeHandler = (event) => {
     setEmail(event.target.value);
@@ -15,12 +20,13 @@ const Login = () => {
 
   const loginUserHandler = async (event) => {
     event.preventDefault();
-    const loggedUser = {
-      email: email,
-      password: password,
-    };
-    console.log(loggedUser);
+    dispatch(login({ email, password }));
   };
+
+  // Redirect if logged in
+  if (!isAuthenticated) {
+    return <Navigate to='/dashboard' />;
+  }
 
   return (
     <Fragment>
