@@ -13,6 +13,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.0",
     "bcryptjs": "^2.4.3",
     "config": "^3.3.7",
     "express": "^4.17.3",
