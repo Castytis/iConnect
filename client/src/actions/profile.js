@@ -22,3 +22,35 @@ export const getCurrentProfile = () => async (dispatch) => {
     });
   }
 };
+
+// Create or update a profile
+export const createProfile = (formData, edit = false) => async (dispatch) => {
+  try {
+    const res = await axios.post('/api/profile', formData);
+
+    dispatch({
+      type: GET_PROFILE,
+      payload: res.data,
+    });
+
+    dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created'));
+
+    if (!edit) {
+    }
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    console.log('err.response.data', err.response.data);
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+    }
+
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: {
+        msg: err.response.status.text,
+        status: err.response.status,
+      },
+    });
+  }
+};

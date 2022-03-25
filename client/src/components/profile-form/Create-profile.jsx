@@ -1,6 +1,9 @@
 import React, { Fragment, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { createProfile } from '../../actions/profile';
 
 const CreateProfile = () => {
+  const dispatch = useDispatch();
   const [displaySocialInputs, setdisplaySocialInputs] = useState(false);
   const [formData, setFormData] = useState({
     company: '',
@@ -43,6 +46,12 @@ const CreateProfile = () => {
     });
   };
 
+  const onSubmit = (event) => {
+    event.preventDefault();
+
+    dispatch(createProfile(formData));
+  };
+
   return (
     <div className='container'>
       <h1 className='large text-primary'>Create Your Profile</h1>
@@ -51,7 +60,7 @@ const CreateProfile = () => {
         profile stand out
       </p>
       <small>* = required field</small>
-      <form className='form'>
+      <form className='form' onSubmit={onSubmit}>
         <div className='form-group'>
           <select name='status' value={status} onChange={statusHandler}>
             <option value='0'>* Select Professional Status</option>
@@ -124,7 +133,7 @@ const CreateProfile = () => {
             value={githubusername}
             onChange={statusHandler}
           />
-          <small class='form-text'>
+          <small className='form-text'>
             If you want your latest repos and a Github link, include your
             username
           </small>
@@ -136,7 +145,7 @@ const CreateProfile = () => {
             value={bio}
             onChange={statusHandler}
           ></textarea>
-          <small class='form-text'>Tell us a little about yourself</small>
+          <small className='form-text'>Tell us a little about yourself</small>
         </div>
 
         <div className='my-2'>
