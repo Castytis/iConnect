@@ -1,10 +1,13 @@
-import React, { Fragment, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { createProfile } from '../../actions/profile';
+import React, { Fragment, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { createProfile, getCurrentProfile } from '../../actions/profile';
 import { Link } from 'react-router-dom';
 
-const CreateProfile = () => {
+const EditProfile = () => {
   const dispatch = useDispatch();
+
+  const profile = useSelector((state) => state.profile);
+
   const [displaySocialInputs, setdisplaySocialInputs] = useState(false);
   const [formData, setFormData] = useState({
     company: '',
@@ -36,6 +39,21 @@ const CreateProfile = () => {
     instagram,
   } = formData;
 
+  const initialState = {
+    company: '',
+    website: '',
+    location: '',
+    status: '',
+    skills: '',
+    githubusername: '',
+    bio: '',
+    twitter: '',
+    facebook: '',
+    linkedin: '',
+    youtube: '',
+    instagram: '',
+  };
+
   const toggleSocialInputs = () => {
     setdisplaySocialInputs(!displaySocialInputs);
   };
@@ -52,6 +70,19 @@ const CreateProfile = () => {
 
     dispatch(createProfile(formData));
   };
+
+  useEffect(() => {
+    if (!profile) dispatch(getCurrentProfile());
+
+    const profileData = { ...initialState };
+    for (const key in profile) {
+      if (key in profileData) profileData[key] = profile[key];
+    }
+    for (const key in profile.social) {
+      if (key in profileData) profileData[key] = profile.social[key];
+    }
+    setFormData(profileData, true);
+  }, [getCurrentProfile, profile]);
 
   return (
     <div className='container'>
@@ -228,4 +259,4 @@ const CreateProfile = () => {
   );
 };
 
-export default CreateProfile;
+export default EditProfile;

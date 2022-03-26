@@ -2,6 +2,7 @@ import React, { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getCurrentProfile } from '../../actions/profile';
+import DashboardActions from './DashboardActions';
 
 const Dashboard = () => {
   const auth = useSelector((state) => state.auth);
@@ -18,7 +19,9 @@ const Dashboard = () => {
       <h1 className='large text-primary'>Dashboard</h1>
       <p className='lead'>Welcome {auth.user && auth.user.name}</p>
       {profile !== null ? (
-        <Fragment>:)</Fragment>
+        <Fragment>
+          <DashboardActions />
+        </Fragment>
       ) : (
         <Fragment>
           <p>No profile found</p>
