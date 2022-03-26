@@ -17,6 +17,8 @@ import setAuthToken from './utils/setAuthToken';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import PrivateRoute from './components/routing/PrivateRoute';
 import EditProfile from './components/profile-form/EdiProfile';
+import AddExperience from './components/profile-form/AddExperience';
+import AddEducation from './components/profile-form/AddEducation';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -58,6 +60,22 @@ const App = () => {
               element={
                 <PrivateRoute>
                   <EditProfile />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path='/add-experience'
+              element={
+                <PrivateRoute>
+                  <AddExperience />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path='/add-education'
+              element={
+                <PrivateRoute>
+                  <AddEducation />
                 </PrivateRoute>
               }
             />
