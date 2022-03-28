@@ -7,6 +7,7 @@ import Register from './components/auth/Register';
 import Alert from './components/layout/Alert';
 import Dashboard from './components/dashboard/Dashboard';
 import CreateProfile from './components/profile-form/Create-profile';
+import Profiles from './components/profiles/Profiles';
 
 //Redux
 import { Provider } from 'react-redux';
@@ -39,6 +40,7 @@ const App = () => {
             <Route path='/' element={<Landing />} />
             <Route path='/register' element={<Register />} />
             <Route path='/login' element={<Login />} />
+            <Route path='/profiles' element={<Profiles />} />
             <Route
               path='/dashboard'
               element={
