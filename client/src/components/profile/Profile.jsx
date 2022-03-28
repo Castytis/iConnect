@@ -2,12 +2,14 @@ import React, { Fragment, useEffect } from 'react';
 import { getProfileById } from '../../actions/profile';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
-import auth from '../../reducers/auth';
+import ProfileTop from './ProfileTop';
+import ProfileAbout from './ProfileAbout';
 
 const Profile = () => {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
-  const profile = useSelector((state) => state.profile);
+  const profile = useSelector((state) => state.profile.profiles);
+
   let { id } = useParams();
 
   useEffect(() => {
@@ -27,6 +29,10 @@ const Profile = () => {
               Edit Profile
             </Link>
           )}
+        <div className='profile-grid my-1'>
+          <ProfileTop profile={profile} />
+          <ProfileAbout profile={profile} />
+        </div>
       </Fragment>
     </div>
   );
