@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const ProfileItem = (props) => {
   return (
     <div className='profile bg-light'>
-      <img src={props.profile.user.avatar} className='round-img' />
+      <img src={props.profile.user.avatar} alt='' className='round-img' />
       <div>
         <h2>{props.profile.user.name}</h2>
         <p>
